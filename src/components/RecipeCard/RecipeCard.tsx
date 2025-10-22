@@ -1,22 +1,35 @@
 //This will have a name, a short description, an image, and a full description.
-type recipeCardsProps = {
-  name: string;
-  shortDescription: string;
-  image?: string;
-  fullDescription?: string;
-};
+import { RecipeCardProps } from "../../types/recipe";
+import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 
 function RecipeCard({
   name,
   shortDescription,
   image,
   fullDescription,
-}: recipeCardsProps) {
+  handlePopupClick,
+}: RecipeCardProps) {
   return (
     <div className="border">
-      <h3 className="text-3xl text-center">{name}</h3>
-      <p className="text-xl text-center">{shortDescription}</p>
-      {image ? <img src={image} alt={name} /> : ""}
+      <button
+        className="hover:opacity-50 transition-all"
+        onClick={() => {
+          handlePopupClick({
+            name,
+            shortDescription,
+            image,
+            fullDescription,
+          });
+        }}
+      >
+        <h3 className="text-3xl text-center">{name}</h3>
+        <p className="text-xl text-center">{shortDescription}</p>
+        {image ? (
+          <img src={image} alt={name} />
+        ) : (
+          <img src={testFoodImage} alt="No image - placeholder"></img>
+        )}
+      </button>
     </div>
   );
 }

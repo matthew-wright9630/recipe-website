@@ -1,22 +1,31 @@
 import { useState } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 
-function Main() {
-  // const [count, setCount] = useState(0);
+function Main({ handlePopupClick }) {
   const [recipeCards, setRecipeCards] = useState([
     {
       name: "Test Card",
       description: "This is a description used for testing purposes.",
+      image: "",
+      fullDescription: "",
     },
   ]);
 
   function addRecipe() {
     setRecipeCards([
-      { name: "test", description: "New Test" },
-      { name: "Second Test", description: "This is the second card." },
+      { name: "test", description: "New Test", image: "", fullDescription: "" },
+      {
+        name: "Second Test",
+        description: "This is the second card.",
+        image: "",
+        fullDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      },
       {
         name: "test",
         description: "This is a description used for testing purposes.",
+        image: "",
+        fullDescription: "",
       },
     ]);
   }
@@ -35,6 +44,9 @@ function Main() {
             <RecipeCard
               name={card.name}
               shortDescription={card.description}
+              image={card.image}
+              fullDescription={card.fullDescription}
+              handlePopupClick={handlePopupClick}
               key={recipeCards.indexOf(card)}
             />
           );
