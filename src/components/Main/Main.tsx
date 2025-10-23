@@ -27,7 +27,7 @@ function Main({ handlePopupClick, isOpen }) {
           "Add more powdered sugar (up to 1 cup) if it is too sticky. Chill 2 hours. ",
           "Roll into 1 inch balls.",
           "Dip each ball into melted chocolate, leaving a nickel sized spot bare.",
-          "Place on was paper and chill until the chocolate is set.",
+          "Place on wax paper and chill until the chocolate is set.",
         ],
         ingredients: [
           { name: "butter", amount: 6, unitOfMeasure: "tbsp" },
