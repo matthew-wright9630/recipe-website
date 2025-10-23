@@ -1,4 +1,5 @@
 //This will have a name, a short description, an image, and a full description.
+//Update: a recipe card will have the following: a name, a short description, an image, prep time/cook time/servings (optional), ingrediants, directions, and notes.
 import { RecipeCardProps } from "../../types/recipe";
 import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 
@@ -6,7 +7,11 @@ function RecipeCard({
   name,
   shortDescription,
   image,
-  fullDescription,
+  directions,
+  ingredients,
+  cooktime,
+  notes,
+  author,
   handlePopupClick,
 }: RecipeCardProps) {
   return (
@@ -18,7 +23,11 @@ function RecipeCard({
             name,
             shortDescription,
             image,
-            fullDescription,
+            directions,
+            ingredients,
+            cooktime,
+            notes,
+            author,
           });
         }}
       >

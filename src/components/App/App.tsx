@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import { Recipe } from "../../types/recipe";
@@ -48,13 +48,30 @@ function App() {
     };
   }, [activePopup]);
 
+  useEffect(() => {
+    if (activePopup !== "") {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [activePopup]);
+
   return (
-    <div className="min-h-screen mx-auto bg-gradient-to-b from-orange-500 to-green-700 p-6 text-white">
+    <div
+      className={`min-h-screen mx-auto bg-gradient-to-b from-orange-500 to-green-700 p-6 text-white`}
+    >
       <Header />
       <Routes>
         <Route
           path="/"
-          element={<Main handlePopupClick={handleRecipePopupClick} />}
+          element={
+            <Main
+              handlePopupClick={handleRecipePopupClick}
+              isOpen={activePopup !== ""}
+            />
+          }
         />
       </Routes>
 
@@ -63,7 +80,11 @@ function App() {
           name={recipePopupInformation.name}
           shortDescription={recipePopupInformation.shortDescription}
           image={recipePopupInformation.image}
-          fullDescription={recipePopupInformation.fullDescription}
+          directions={recipePopupInformation.directions}
+          ingredients={recipePopupInformation.ingredients}
+          cooktime={recipePopupInformation.cooktime}
+          notes={recipePopupInformation.notes}
+          author={recipePopupInformation.author}
           isOpen={isRecipePopupOpen}
           handleClosePopup={handleClosePopup}
         />

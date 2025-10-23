@@ -1,8 +1,34 @@
+type Ingredient = {
+  name: string;
+  amount: number;
+  unitOfMeasure:
+    | "cup"
+    | "oz"
+    | "gallon"
+    | "ml"
+    | "l"
+    | "g"
+    | "mg"
+    | "tbsp"
+    | "tsp";
+  notes?: string;
+};
+
+type RecipeHeader = {
+  servings: string;
+  prepTime: string;
+  cookTime: string;
+};
+
 export type Recipe = {
   name: string;
   shortDescription: string;
   image?: string;
-  fullDescription?: string;
+  directions: Array<string>;
+  ingredients: Array<Ingredient>;
+  cooktime: RecipeHeader;
+  notes?: string;
+  author: string;
 };
 
 export type RecipeCardProps = Recipe & {
