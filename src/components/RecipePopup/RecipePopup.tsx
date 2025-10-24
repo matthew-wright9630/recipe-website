@@ -14,7 +14,7 @@ function RecipePopup({
   image,
   directions,
   ingredients,
-  cooktime,
+  recipeHeader,
   author,
   notes,
   isOpen,
@@ -41,10 +41,17 @@ function RecipePopup({
                 alt="No image - placeholder"
               ></img>
             )}
+            <h3 className="text-2xl">Test</h3>
+            <div className="self-end flex gap-3">
+              <p className="text-lg">Servings: {recipeHeader.servings}
+                
+              </p>
+              <p className="text-lg">Prep Time: {recipeHeader.prepTime}</p>
+              <p className="text-lg">Cook Time: {recipeHeader.cookTime}</p>
+            </div>
             <div className="">
               <h3 className="text-2xl my-2">Ingredients:</h3>
               {ingredients?.map((item) => {
-                console.log(ingredients);
                 return (
                   <p className="text-lg">
                     {ingredients.indexOf(item) + 1}. {item.amount}{" "}
