@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { act, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import { Recipe } from "../../types/recipe";
 import "./App.css";
 import RecipePopup from "../RecipePopup/RecipePopup";
+import LoginPopup from "../LoginPopup/LoginPopup";
+import SignupPopup from "../SignupPopup/SignupPopup";
 
 function App() {
   const [activePopup, setActivePopup] = useState<string | null>(null);
@@ -16,7 +18,17 @@ function App() {
     setRecipePopupInformation(recipe);
   }
 
+  function handleLoginPopupClick() {
+    setActivePopup("login-popup");
+  }
+
+  function handleSignupPopupClick() {
+    setActivePopup("signup-popup");
+  }
+
   const isRecipePopupOpen = activePopup === "recipe-popup";
+  const isLoginPopupOpen = activePopup === "login-popup";
+  const isSignupPopupOpen = activePopup === "signup-popup";
 
   function handleClosePopup() {
     setActivePopup("");
@@ -62,14 +74,16 @@ function App() {
     <div
       className={`min-h-screen mx-auto bg-gradient-to-b from-orange-500 to-green-700 p-6 text-white`}
     >
-      <Header />
+      <Header 
+              handleLoginPopupClick={handleLoginPopupClick}
+              handleSignupPopupClick={handleSignupPopupClick}
+              />
       <Routes>
         <Route
           path="/"
           element={
             <Main
               handlePopupClick={handleRecipePopupClick}
-              isOpen={activePopup !== ""}
             />
           }
         />
@@ -82,7 +96,7 @@ function App() {
           image={recipePopupInformation.image}
           directions={recipePopupInformation.directions}
           ingredients={recipePopupInformation.ingredients}
-          cooktime={recipePopupInformation.cooktime}
+          recipeHeader={recipePopupInformation.recipeHeader}
           notes={recipePopupInformation.notes}
           author={recipePopupInformation.author}
           isOpen={isRecipePopupOpen}
