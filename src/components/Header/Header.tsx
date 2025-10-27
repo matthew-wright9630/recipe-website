@@ -1,4 +1,10 @@
-function Header(handleLoginPopupClick, handleSignupPopupClick) {
+function Header({
+  handleLoginPopupClick,
+  handleSignupPopupClick,
+}: {
+  handleLoginPopupClick: any;
+  handleSignupPopupClick: any;
+}) {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-5xl dark:bg-slate-800 dark:shadow-none">
@@ -17,11 +23,17 @@ function Header(handleLoginPopupClick, handleSignupPopupClick) {
           </ul> */}
         </nav>
         <div className="w-[30%] ml-auto">
-          <button onClick={handleLoginPopupClick} className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600">
+          <button
+            onClick={handleLoginPopupClick}
+            className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
+          >
             Login
           </button>{" "}
           /{" "}
-          <button onClick={handleSignupPopupClick} className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600">
+          <button
+            onClick={handleSignupPopupClick}
+            className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
+          >
             Signup
           </button>
         </div>

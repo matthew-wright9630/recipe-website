@@ -26,7 +26,7 @@ export type Recipe = {
   image?: string;
   directions: Array<string>;
   ingredients: Array<Ingredient>;
-  cooktime: RecipeHeader;
+  recipeHeader: RecipeHeader;
   notes?: string;
   author: string;
 };

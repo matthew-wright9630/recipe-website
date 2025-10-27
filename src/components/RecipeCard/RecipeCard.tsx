@@ -9,7 +9,7 @@ function RecipeCard({
   image,
   directions,
   ingredients,
-  cooktime,
+  recipeHeader,
   notes,
   author,
   handlePopupClick,
@@ -25,7 +25,7 @@ function RecipeCard({
             image,
             directions,
             ingredients,
-            cooktime,
+            recipeHeader,
             notes,
             author,
           });

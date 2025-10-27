@@ -20,6 +20,9 @@ function RecipePopup({
   isOpen,
   handleClosePopup,
 }: RecipePopupProps) {
+  if (!isOpen) {
+    return null;
+  }
   return (
     <div className="">
       <Popup
@@ -41,8 +44,7 @@ function RecipePopup({
                 alt="No image - placeholder"
               ></img>
             )}
-            <h3 className="text-2xl">Test</h3>
-            <div className="self-end flex gap-3">
+            <div className="self-end flex gap-3 border border-black">
               <p className="text-lg">Servings: {recipeHeader.servings}
                 
               </p>
@@ -64,7 +66,6 @@ function RecipePopup({
             <div>
               <h3 className="text-2xl my-2">Directions:</h3>
               {directions?.map((step) => {
-                console.log(ingredients);
                 return (
                   <p className="text-lg">
                     {directions.indexOf(step) + 1}. {step}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { Recipe } from "../../types/recipe";
 
-function Main({ handlePopupClick, isOpen }) {
+function Main({ handlePopupClick }) {
   const [recipeCards, setRecipeCards] = useState<Recipe[]>([
     {
       name: "Test Card",
@@ -10,7 +10,7 @@ function Main({ handlePopupClick, isOpen }) {
       image: "",
       directions: [""],
       ingredients: [],
-      cooktime: { servings: "", prepTime: "", cookTime: "" },
+      recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
     },
@@ -47,7 +47,7 @@ function Main({ handlePopupClick, isOpen }) {
           },
           { name: "melting chocolate", amount: 10, unitOfMeasure: "oz" },
         ],
-        cooktime: { servings: "16", prepTime: "10 mins", cookTime: "30 mins" },
+        recipeHeader: { servings: "16", prepTime: "10 mins", cookTime: "30 mins" },
         notes:
           "Use a tootpick to dip the balls into the chocolate. if the balls are too soft to dip, freeze them for 15 minutes.",
         author: "Laura Wright",
@@ -61,7 +61,7 @@ function Main({ handlePopupClick, isOpen }) {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
         ],
         ingredients: [],
-        cooktime: { servings: "", prepTime: "", cookTime: "" },
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
         notes: "",
         author: "",
       },
@@ -73,7 +73,7 @@ function Main({ handlePopupClick, isOpen }) {
         image: "",
         directions: [""],
         ingredients: [],
-        cooktime: { servings: "", prepTime: "", cookTime: "" },
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
         notes: "",
         author: "",
       },
@@ -83,7 +83,7 @@ function Main({ handlePopupClick, isOpen }) {
         image: "",
         directions: [""],
         ingredients: [],
-        cooktime: { servings: "", prepTime: "", cookTime: "" },
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
         notes: "",
         author: "",
       },
@@ -95,7 +95,7 @@ function Main({ handlePopupClick, isOpen }) {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
         ],
         ingredients: [],
-        cooktime: { servings: "", prepTime: "", cookTime: "" },
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
         notes: "",
         author: "",
       },
@@ -106,7 +106,7 @@ function Main({ handlePopupClick, isOpen }) {
         image: "",
         directions: [""],
         ingredients: [],
-        cooktime: { servings: "", prepTime: "", cookTime: "" },
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
         notes: "",
         author: "",
       },
@@ -130,7 +130,7 @@ function Main({ handlePopupClick, isOpen }) {
               image={card.image}
               directions={card.directions}
               ingredients={card.ingredients}
-              cooktime={card.cooktime}
+              recipeHeader={card.recipeHeader}
               notes={card.notes}
               author={card.author}
               handlePopupClick={handlePopupClick}

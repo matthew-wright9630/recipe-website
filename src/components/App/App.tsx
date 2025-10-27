@@ -6,7 +6,7 @@ import { Recipe } from "../../types/recipe";
 import "./App.css";
 import RecipePopup from "../RecipePopup/RecipePopup";
 import LoginPopup from "../LoginPopup/LoginPopup";
-import SignupPopup from "../SignupPopup/SignupPopup";
+// import SignupPopup from "../SignupPopup/SignupPopup";
 
 function App() {
   const [activePopup, setActivePopup] = useState<string | null>(null);
@@ -74,37 +74,31 @@ function App() {
     <div
       className={`min-h-screen mx-auto bg-gradient-to-b from-orange-500 to-green-700 p-6 text-white`}
     >
-      <Header 
-              handleLoginPopupClick={handleLoginPopupClick}
-              handleSignupPopupClick={handleSignupPopupClick}
-              />
+      <Header
+        handleLoginPopupClick={handleLoginPopupClick}
+        handleSignupPopupClick={handleSignupPopupClick}
+      />
       <Routes>
         <Route
           path="/"
-          element={
-            <Main
-              handlePopupClick={handleRecipePopupClick}
-            />
-          }
+          element={<Main handlePopupClick={handleRecipePopupClick} />}
         />
       </Routes>
-
-      {recipePopupInformation ? (
-        <RecipePopup
-          name={recipePopupInformation.name}
-          shortDescription={recipePopupInformation.shortDescription}
-          image={recipePopupInformation.image}
-          directions={recipePopupInformation.directions}
-          ingredients={recipePopupInformation.ingredients}
-          recipeHeader={recipePopupInformation.recipeHeader}
-          notes={recipePopupInformation.notes}
-          author={recipePopupInformation.author}
-          isOpen={isRecipePopupOpen}
-          handleClosePopup={handleClosePopup}
-        />
-      ) : (
-        ""
-      )}
+      {/*Popups: */}
+      <RecipePopup
+        name={recipePopupInformation?.name}
+        shortDescription={recipePopupInformation?.shortDescription}
+        image={recipePopupInformation?.image}
+        directions={recipePopupInformation?.directions}
+        ingredients={recipePopupInformation?.ingredients}
+        recipeHeader={recipePopupInformation?.recipeHeader}
+        notes={recipePopupInformation?.notes}
+        author={recipePopupInformation?.author}
+        isOpen={isRecipePopupOpen}
+        handleClosePopup={handleClosePopup}
+      />
+      <LoginPopup isOpen={isLoginPopupOpen} />
+      {/* <SignupPopup isOpen={isSignupPopupOpen}/> */}
     </div>
   );
 }
