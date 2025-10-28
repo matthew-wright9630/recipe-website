@@ -25,14 +25,14 @@ function Header({
         <div className="w-[30%] ml-auto">
           <button
             onClick={handleLoginPopupClick}
-            className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
+            className="button"
           >
             Login
           </button>{" "}
           /{" "}
           <button
             onClick={handleSignupPopupClick}
-            className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
+            className="button"
           >
             Signup
           </button>

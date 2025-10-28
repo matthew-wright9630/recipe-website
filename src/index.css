@@ -1,6 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .form-label {
+    @apply flex justify-between items-center;
+  }
+  .button {
+    @apply rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600 cursor-pointer
+  }
+
+  .form-button {
+    @apply w-[40%] rounded-md bg-black text-white transition-all duration-500 hover:bg-gray-600 cursor-pointer
+  }
+}
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -6,10 +6,12 @@ import { Recipe } from "../../types/recipe";
 import "./App.css";
 import RecipePopup from "../RecipePopup/RecipePopup";
 import LoginPopup from "../LoginPopup/LoginPopup";
+import SignupPopup from "../SignupPopup/SignupPopup";
 // import SignupPopup from "../SignupPopup/SignupPopup";
 
 function App() {
   const [activePopup, setActivePopup] = useState<string | null>(null);
+  const [error, setError] = useState("");
   const [recipePopupInformation, setRecipePopupInformation] =
     useState<Recipe | null>(null);
 
@@ -33,6 +35,50 @@ function App() {
   function handleClosePopup() {
     setActivePopup("");
   }
+
+  const handleLogin = ({
+    email,
+    password,
+    resetForm,
+  }: {
+    email: string;
+    password: string;
+    resetForm: () => void;
+  }) => {
+    if (!email || !password) {
+      return;
+    }
+
+    resetForm();
+    handleClosePopup();
+  };
+
+  const handleSignup = ({
+    userName,
+    email,
+    password,
+    confirmPassword,
+    resetForm,
+  }: {
+    userName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    resetForm: () => void;
+  }) => {
+    if (password !== confirmPassword) {
+      setError("Passwords to not match");
+      return;
+    }
+    if (!email || !password) {
+      return;
+    }
+
+    console.log(email, password);
+    resetForm();
+    handleClosePopup();
+    setError("");
+  };
 
   useEffect(() => {
     if (!activePopup) return;
@@ -62,13 +108,30 @@ function App() {
 
   useEffect(() => {
     if (activePopup !== "") {
-      document.body.classList.add("overflow-hidden");
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
 
-    return () => document.body.classList.remove("overflow-hidden");
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
   }, [activePopup]);
+
+  // useEffect(() => {
+  //   if (activePopup !== "") {
+  //     document.body.classList.add("overflow-hidden");
+  //   } else {
+  //     document.body.classList.remove("overflow-hidden");
+  //   }
+
+  //   return () => document.body.classList.remove("overflow-hidden");
+  // }, [activePopup]);
 
   return (
     <div
@@ -85,20 +148,33 @@ function App() {
         />
       </Routes>
       {/*Popups: */}
-      <RecipePopup
-        name={recipePopupInformation?.name}
-        shortDescription={recipePopupInformation?.shortDescription}
-        image={recipePopupInformation?.image}
-        directions={recipePopupInformation?.directions}
-        ingredients={recipePopupInformation?.ingredients}
-        recipeHeader={recipePopupInformation?.recipeHeader}
-        notes={recipePopupInformation?.notes}
-        author={recipePopupInformation?.author}
-        isOpen={isRecipePopupOpen}
+      {recipePopupInformation && (
+        <RecipePopup
+          name={recipePopupInformation?.name}
+          shortDescription={recipePopupInformation?.shortDescription}
+          image={recipePopupInformation?.image}
+          directions={recipePopupInformation?.directions}
+          ingredients={recipePopupInformation?.ingredients}
+          recipeHeader={recipePopupInformation?.recipeHeader}
+          notes={recipePopupInformation?.notes}
+          author={recipePopupInformation?.author}
+          isOpen={isRecipePopupOpen}
+          handleClosePopup={handleClosePopup}
+        />
+      )}
+      <LoginPopup
+        isOpen={isLoginPopupOpen}
         handleClosePopup={handleClosePopup}
+        handleSignupPopupClick={handleSignupPopupClick}
+        handleLogin={handleLogin}
       />
-      <LoginPopup isOpen={isLoginPopupOpen} />
-      {/* <SignupPopup isOpen={isSignupPopupOpen}/> */}
+      <SignupPopup
+        isOpen={isSignupPopupOpen}
+        handleClosePopup={handleClosePopup}
+        handleLoginPopupClick={handleLoginPopupClick}
+        error={error}
+        handleSignup={handleSignup}
+      />
     </div>
   );
 }

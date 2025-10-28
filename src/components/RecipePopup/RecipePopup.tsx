@@ -5,7 +5,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 type RecipePopupProps = Recipe & {
   isOpen: boolean;
-  handleClosePopup: (recipe: Recipe) => void;
+  handleClosePopup: () => void;
 };
 
 function RecipePopup({
@@ -20,9 +20,9 @@ function RecipePopup({
   isOpen,
   handleClosePopup,
 }: RecipePopupProps) {
-  if (!isOpen) {
-    return null;
-  }
+  // if (!isOpen) {
+  //   return null;
+  // }
   return (
     <div className="">
       <Popup
@@ -31,7 +31,8 @@ function RecipePopup({
         isOpen={isOpen}
         children={
           <div className="flex flex-col gap-5 h-[90%] mx-5">
-            <button className="absolute top-0 right-0 hover:opacity-70 transition-all">
+            <button className="absolute top-[50px] right-[5px] hover:opacity-70 transition-all">
+            {/* <button className="self-end hover:opacity-70 transition-all"> */}
               <ArrowTopRightOnSquareIcon className=" w-7 h-7" />
             </button>
             <p className="text-xl self-center">{shortDescription}</p>
