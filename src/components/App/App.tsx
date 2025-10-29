@@ -60,6 +60,7 @@ function App() {
       notes:
         "Use a tootpick to dip the balls into the chocolate. if the balls are too soft to dip, freeze them for 15 minutes.",
       author: "Laura Wright",
+      id: "5",
     },
 
     {
@@ -73,6 +74,7 @@ function App() {
       recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
+      id: "15050",
     },
 
     {
@@ -84,6 +86,7 @@ function App() {
       recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
+      id: "15050",
     },
     {
       name: "test",
@@ -94,6 +97,7 @@ function App() {
       recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
+      id: "15050",
     },
     {
       name: "Second Test",
@@ -106,6 +110,7 @@ function App() {
       recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
+      id: "15050",
     },
     {
       name: "test",
@@ -116,22 +121,30 @@ function App() {
       recipeHeader: { servings: "", prepTime: "", cookTime: "" },
       notes: "",
       author: "",
+      id: "15050",
     },
   ]);
 
   function addRecipe() {
-    console.log(...recipeCards)
-    setRecipeCards([...recipeCards, {
-      name: "test",
-      shortDescription: "This is a shortDescription used for testing purposes.",
-      image: "",
-      directions: [""],
-      ingredients: [],
-      recipeHeader: { servings: "", prepTime: "", cookTime: "" },
-      notes: "",
-      author: "",
-    }])
+    console.log(...recipeCards);
+    setRecipeCards([
+      ...recipeCards,
+      {
+        name: "test",
+        shortDescription:
+          "This is a shortDescription used for testing purposes.",
+        image: "",
+        directions: [""],
+        ingredients: [],
+        recipeHeader: { servings: "", prepTime: "", cookTime: "" },
+        notes: "",
+        author: "",
+        id: "15050",
+      },
+    ]);
   }
+
+  
 
   function handleRecipePopupClick(recipe: Recipe) {
     setActivePopup("recipe-popup");
@@ -171,7 +184,7 @@ function App() {
     //For dev purposes, I have defined a specific user to login as.
 
     if (email === "test@test.com") {
-      setCurrentUser({ userName: "test" });
+      setCurrentUser({ userName: "test", likedRecipes: ["5"] });
       setIsLoggedIn(true);
     }
 
@@ -210,6 +223,11 @@ function App() {
     handleClosePopup();
     setError("");
   };
+
+  function handleCardLike(recipe: Recipe) {
+    //This function will tell the database to add the recipe ID to the user's liked cards list.
+    //The program should handle displaying the liked card list.
+  }
 
   useEffect(() => {
     if (!activePopup) return;
@@ -260,11 +278,11 @@ function App() {
         className={`min-h-screen mx-auto bg-gradient-to-b from-orange-500 to-green-700 p-6 text-white`}
       >
         <button
-        className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
-        onClick={addRecipe}
-      >
-        Test Game Card
-      </button>
+          className="rounded-md bg-gray-400 transition-all duration-500 hover:bg-gray-600"
+          onClick={addRecipe}
+        >
+          Test Game Card
+        </button>
         <Header
           handleLoginPopupClick={handleLoginPopupClick}
           handleSignupPopupClick={handleSignupPopupClick}
@@ -275,11 +293,16 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Main handlePopupClick={handleRecipePopupClick} recipeCards={recipeCards} />}
+            element={
+              <Main
+                handlePopupClick={handleRecipePopupClick}
+                recipeCards={recipeCards}
+                user={currentUser}
+                isLoggedIn={isLoggedIn}
+              />
+            }
           />
-          <Route path="/profile"
-            element={<Profile />}
-          />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         {/*Popups: */}
         {recipePopupInformation && (
@@ -292,6 +315,7 @@ function App() {
             recipeHeader={recipePopupInformation?.recipeHeader}
             notes={recipePopupInformation?.notes}
             author={recipePopupInformation?.author}
+            id={recipePopupInformation?.id}
             isOpen={isRecipePopupOpen}
             handleClosePopup={handleClosePopup}
           />

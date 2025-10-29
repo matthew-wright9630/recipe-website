@@ -29,6 +29,7 @@ export type Recipe = {
   recipeHeader: RecipeHeader;
   notes?: string;
   author: string;
+  id: string;
 };
 
 export type RecipeCardProps = Recipe & {
