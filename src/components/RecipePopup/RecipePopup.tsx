@@ -32,8 +32,7 @@ function RecipePopup({
         children={
           <div className="flex flex-col gap-5 h-[90%] mx-5">
             <button className="absolute top-[50px] right-[5px] hover:opacity-70 transition-all">
-            {/* <button className="self-end hover:opacity-70 transition-all"> */}
-              <ArrowTopRightOnSquareIcon className=" w-7 h-7" />
+              <ArrowTopRightOnSquareIcon className="w-7 h-7" />
             </button>
             <p className="text-xl self-center">{shortDescription}</p>
             {image ? (
@@ -46,9 +45,7 @@ function RecipePopup({
               ></img>
             )}
             <div className="self-end flex gap-3 border border-black">
-              <p className="text-lg">Servings: {recipeHeader.servings}
-                
-              </p>
+              <p className="text-lg">Servings: {recipeHeader.servings}</p>
               <p className="text-lg">Prep Time: {recipeHeader.prepTime}</p>
               <p className="text-lg">Cook Time: {recipeHeader.cookTime}</p>
             </div>
@@ -56,7 +53,7 @@ function RecipePopup({
               <h3 className="text-2xl my-2">Ingredients:</h3>
               {ingredients?.map((item) => {
                 return (
-                  <p className="text-lg">
+                  <p className="text-lg" key={item.name}>
                     {ingredients.indexOf(item) + 1}. {item.amount}{" "}
                     {item.unitOfMeasure} of {item.name}{" "}
                     {item.notes ? item.notes : ""}
@@ -68,7 +65,7 @@ function RecipePopup({
               <h3 className="text-2xl my-2">Directions:</h3>
               {directions?.map((step) => {
                 return (
-                  <p className="text-lg">
+                  <p className="text-lg" key={directions.indexOf(step)}>
                     {directions.indexOf(step) + 1}. {step}
                   </p>
                 );
