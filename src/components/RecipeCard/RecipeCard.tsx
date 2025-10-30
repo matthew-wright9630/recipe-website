@@ -26,7 +26,7 @@ function RecipeCard({
   return (
     <div className="border relative">
       <button
-        className="hover:opacity-50 transition-all"
+        className="hover:opacity-70 transition-all flex flex-col h-full gap-3"
         onClick={() => {
           handlePopupClick({
             name,
@@ -42,17 +42,17 @@ function RecipeCard({
         }}
       >
         <h3 className="text-3xl text-center">{name}</h3>
-        <p className="text-xl text-center">{shortDescription}</p>
+        <p className="text-lg text-center">{shortDescription}</p>
         {image ? (
           <img src={image} alt={name} />
         ) : (
-          <img src={testFoodImage} alt="No image - placeholder"></img>
+          <img className="mt-auto" src={testFoodImage} alt="No image - placeholder"></img>
         )}
       </button>
       {isLoggedIn ? (
         <button>
           <HeartIcon
-            className={`absolute bottom-0 right-0  w-[30px] h-[30px] ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
+            className={`absolute bottom-0 right-0  w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
           />
         </button>
       ) : (

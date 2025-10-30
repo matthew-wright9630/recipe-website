@@ -19,25 +19,34 @@ function Header({
       <h1 className="text-5xl dark:bg-slate-800 dark:shadow-none">
         The Wright Recipe List!
       </h1>
-      <div className="w-[100%] my-10 flex items-center text-xl">
-        <nav className="w-[70%] flex justify-center gap-2.5 ">
+      <div className="w-[100%] my-10 flex items-center justify-around text-xl">
+        <nav className=" flex justify-center gap-2.5 ">
           <ul className="cursor-pointer transition-all underline duration-500 text-blue-700 hover:text-blue-400">
             <Link to={"/"}>Homepage</Link>
           </ul>
           <ul className="cursor-pointer transition-all underline duration-500 text-blue-700 hover:text-blue-400">
             About
           </ul>
+          {isLoggedIn ? (
+            <ul className="cursor-pointer transition-all underline duration-500 text-blue-700 hover:text-blue-400">
+              {/* <Link to={"/profile"} className=""> */}
+
+              {/* Profile
+              </Link>{" "} */}
+            </ul>
+          ) : (
+            ""
+          )}
           {/* <ul className="cursor-pointer transition-all underline duration-500 text-blue-700 hover:text-blue-400">
             Shopping List
           </ul> */}
         </nav>
-        <div className="w-[30%] ml-auto">
+        <div className=" flex gap-3">
           {isLoggedIn ? (
             <>
-              <Link to={"/profile"} className="button">
-                {user.userName}
-              </Link>{" "}
-              / {/* <button className="button">{user.userName}</button> */}
+              <Link to={"/profile"} className="button ">
+                Profile
+              </Link>
               <button onClick={handleLogout} className="button">
                 Logout
               </button>

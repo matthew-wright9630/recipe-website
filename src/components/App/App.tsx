@@ -144,8 +144,6 @@ function App() {
     ]);
   }
 
-  
-
   function handleRecipePopupClick(recipe: Recipe) {
     setActivePopup("recipe-popup");
     setRecipePopupInformation(recipe);
@@ -184,7 +182,7 @@ function App() {
     //For dev purposes, I have defined a specific user to login as.
 
     if (email === "test@test.com") {
-      setCurrentUser({ userName: "test", likedRecipes: ["5"] });
+      setCurrentUser({ userName: "I HAVE A REAAAAAAALLY LONG NAME. THIS IS A TEST", likedRecipes: ["5"] });
       setIsLoggedIn(true);
     }
 
@@ -302,7 +300,17 @@ function App() {
               />
             }
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                handlePopupClick={handleRecipePopupClick}
+                recipeCards={recipeCards}
+                user={currentUser}
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
         </Routes>
         {/*Popups: */}
         {recipePopupInformation && (

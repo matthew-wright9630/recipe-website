@@ -31,7 +31,7 @@ function Main({
   return (
     <div className="">
       <button onClick={test}>Test 2</button>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5 place-cotent-stretch">
         {recipeCards?.map((card) => {
           const isLiked = checkIsLiked(card.id);
           return (
