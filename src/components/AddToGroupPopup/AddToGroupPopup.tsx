@@ -16,7 +16,7 @@ function AddToGroupPopup({
   return (
     <div>
       <Popup
-        title={`Add "${recipeInformation.name}" to a group?`}
+        title={`Add "${recipeInformation?.name}" to a group?`}
         onClose={handleClosePopup}
         isOpen={isOpen}
         children={<div>
