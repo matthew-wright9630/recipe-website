@@ -32,6 +32,8 @@ export type Recipe = {
   id: string;
 };
 
-export type RecipeCardProps = Recipe & {
-  handlePopupClick: (recipe: Recipe) => void;
+export type RecipeGroups = {
+  groupName: Array<string>;
+  recipeId: Array<string>;
+  groupImage: string;
 };

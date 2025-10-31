@@ -10,6 +10,7 @@ import SignupPopup from "../SignupPopup/SignupPopup";
 import { createContext } from "react";
 import { User } from "../../types/user";
 import Profile from "../Profile/Profile";
+import AddToGroupPopup from "../AddToGroupPopup/AddToGroupPopup";
 // import SignupPopup from "../SignupPopup/SignupPopup";
 
 function App() {
@@ -157,9 +158,15 @@ function App() {
     setActivePopup("signup-popup");
   }
 
+  function handleAddToGroupPopupClick(recipe: Recipe) {
+    setActivePopup("add-to-group-popup");
+    setRecipePopupInformation(recipe);
+  }
+
   const isRecipePopupOpen = activePopup === "recipe-popup";
   const isLoginPopupOpen = activePopup === "login-popup";
   const isSignupPopupOpen = activePopup === "signup-popup";
+  const isAddToGroupPopupOpen = activePopup === "add-to-group-popup";
 
   function handleClosePopup() {
     setActivePopup("");
@@ -182,7 +189,12 @@ function App() {
     //For dev purposes, I have defined a specific user to login as.
 
     if (email === "test@test.com") {
-      setCurrentUser({ userName: "I HAVE A REAAAAAAALLY LONG NAME. THIS IS A TEST", likedRecipes: ["5"] });
+      setCurrentUser({
+        userId: "User",
+        userName: "I HAVE A REAAAAAAALLY LONG NAME. THIS IS A TEST",
+        likedRecipes: ["5"],
+        recipeGroups: ["Liked Recipes"],
+      });
       setIsLoggedIn(true);
     }
 
@@ -294,6 +306,7 @@ function App() {
             element={
               <Main
                 handlePopupClick={handleRecipePopupClick}
+                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
                 recipeCards={recipeCards}
                 user={currentUser}
                 isLoggedIn={isLoggedIn}
@@ -305,6 +318,19 @@ function App() {
             element={
               <Profile
                 handlePopupClick={handleRecipePopupClick}
+                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
+                recipeCards={recipeCards}
+                user={currentUser}
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="/user/:userId"
+            element={
+              <Profile
+                handlePopupClick={handleRecipePopupClick}
+                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
                 recipeCards={recipeCards}
                 user={currentUser}
                 isLoggedIn={isLoggedIn}
@@ -340,6 +366,12 @@ function App() {
           handleLoginPopupClick={handleLoginPopupClick}
           error={error}
           handleSignup={handleSignup}
+        />
+        <AddToGroupPopup
+          handleClosePopup={handleClosePopup}
+          isOpen={isAddToGroupPopupOpen}
+          recipeInformation={recipePopupInformation}
+          user={currentUser}
         />
       </div>
     </CurrentUserContext.Provider>

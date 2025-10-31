@@ -4,11 +4,13 @@ import { User } from "../../types/user";
 
 function Main({
   handlePopupClick,
+  handleAddToGroupPopupClick,
   recipeCards,
   user,
   isLoggedIn,
 }: {
   handlePopupClick: (recipe: Recipe) => void;
+  handleAddToGroupPopupClick: (recipe: Recipe) => void;
   recipeCards: Array<Recipe>;
   user?: User;
   isLoggedIn: boolean;
@@ -48,6 +50,7 @@ function Main({
               isLiked={isLiked}
               isLoggedIn={isLoggedIn}
               handlePopupClick={handlePopupClick}
+                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
               key={recipeCards.indexOf(card)}
             />
           );

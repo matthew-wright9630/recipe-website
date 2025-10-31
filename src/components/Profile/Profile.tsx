@@ -4,16 +4,19 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 
 function Profile({
   handlePopupClick,
+  handleAddToGroupPopupClick,
   recipeCards,
   user,
   isLoggedIn,
 }: {
   handlePopupClick: (recipe: Recipe) => void;
+  handleAddToGroupPopupClick: (recipe: Recipe) => void;
   recipeCards: Array<Recipe>;
   user: User;
   isLoggedIn: boolean;
 }) {
   console.log(handlePopupClick, recipeCards, user, isLoggedIn);
+
   function checkIsLiked(recipeId: string) {
     if (!user) {
       return false;
@@ -47,6 +50,7 @@ function Profile({
                 isLiked={isLiked}
                 isLoggedIn={isLoggedIn}
                 handlePopupClick={handlePopupClick}
+                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
                 key={recipeCards.indexOf(card)}
               />
             ) : null;

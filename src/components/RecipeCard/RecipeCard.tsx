@@ -1,10 +1,10 @@
-//This will have a name, a short description, an image, and a full description.
-//Update: a recipe card will have the following: a name, a short description, an image, prep time/cook time/servings (optional), ingrediants, directions, and notes.
-import { RecipeCardProps } from "../../types/recipe";
+import { Recipe } from "../../types/recipe";
 import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
-type RecipeCardPropsWithLikes = RecipeCardProps & {
+type RecipeCardProps = Recipe & {
+  handlePopupClick: (recipe: Recipe) => void;
+  handleAddToGroupPopupClick: (recipe: Recipe) => void;
   isLiked: boolean;
   isLoggedIn: boolean;
 };
@@ -21,8 +21,9 @@ function RecipeCard({
   id,
   isLiked,
   isLoggedIn,
+  handleAddToGroupPopupClick,
   handlePopupClick,
-}: RecipeCardPropsWithLikes) {
+}: RecipeCardProps) {
   return (
     <div className="border relative">
       <button
@@ -46,15 +47,39 @@ function RecipeCard({
         {image ? (
           <img src={image} alt={name} />
         ) : (
-          <img className="mt-auto" src={testFoodImage} alt="No image - placeholder"></img>
+          <img
+            className="mt-auto"
+            src={testFoodImage}
+            alt="No image - placeholder"
+          ></img>
         )}
       </button>
       {isLoggedIn ? (
-        <button>
-          <HeartIcon
-            className={`absolute bottom-0 right-0  w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
-          />
-        </button>
+        <>
+          <button>
+            <HeartIcon
+              className={`absolute bottom-0 right-0  w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
+            />
+          </button>
+          <button
+            onClick={() => {
+              handleAddToGroupPopupClick({
+                name,
+                shortDescription,
+                image,
+                directions,
+                ingredients,
+                recipeHeader,
+                notes,
+                author,
+                id,
+              });
+            }}
+            className="button absolute bottom-0 left-0 w-[60px] text-sm"
+          >
+            Share Recipe
+          </button>
+        </>
       ) : (
         ""
       )}

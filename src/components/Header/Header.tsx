@@ -44,7 +44,7 @@ function Header({
         <div className=" flex gap-3">
           {isLoggedIn ? (
             <>
-              <Link to={"/profile"} className="button ">
+              <Link to={`/user/${user.userId}`} className="button ">
                 Profile
               </Link>
               <button onClick={handleLogout} className="button">
