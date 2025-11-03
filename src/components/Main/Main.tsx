@@ -1,6 +1,7 @@
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { Recipe } from "../../types/recipe";
 import { User } from "../../types/user";
+import { getUsers } from "../../utils/api";
 
 function Main({
   handlePopupClick,
@@ -15,9 +16,19 @@ function Main({
   user?: User;
   isLoggedIn: boolean;
 }) {
+
   function test() {
-    console.log(recipeCards);
+    loadUsers();
   }
+
+  async function loadUsers() {
+  try {
+    const users = await getUsers(); // wait for the Promise to resolve
+    console.log(users);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
   function checkIsLiked(recipeId: string) {
     if (!user) {
@@ -50,7 +61,7 @@ function Main({
               isLiked={isLiked}
               isLoggedIn={isLoggedIn}
               handlePopupClick={handlePopupClick}
-                handleAddToGroupPopupClick={handleAddToGroupPopupClick}
+              handleAddToGroupPopupClick={handleAddToGroupPopupClick}
               key={recipeCards.indexOf(card)}
             />
           );
