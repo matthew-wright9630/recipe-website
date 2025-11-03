@@ -40,7 +40,7 @@ function LoginPopup({
                 <input
                   onChange={handleChange}
                   type="email"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   name="email"
                   id="loginEmail"
                   placeholder="email"
@@ -59,7 +59,7 @@ function LoginPopup({
                 <input
                   onChange={handleChange}
                   type="password"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   id="loginPassword"
                   name="password"
                   placeholder="password"

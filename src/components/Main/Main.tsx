@@ -1,7 +1,6 @@
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { Recipe } from "../../types/recipe";
 import { User } from "../../types/user";
-import { getUsers } from "../../utils/api";
 
 function Main({
   handlePopupClick,
@@ -17,33 +16,19 @@ function Main({
   isLoggedIn: boolean;
 }) {
 
-  function test() {
-    loadUsers();
-  }
-
-  async function loadUsers() {
-  try {
-    const users = await getUsers(); // wait for the Promise to resolve
-    console.log(users);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
   function checkIsLiked(recipeId: string) {
     if (!user) {
       return false;
     }
-    if (user.likedRecipes.includes(recipeId)) {
-      return true;
-    } else {
-      return false;
-    }
+    // if (user.likedRecipes.includes(recipeId)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   return (
     <div className="">
-      <button onClick={test}>Test 2</button>
       <div className="grid grid-cols-3 gap-5 place-cotent-stretch">
         {recipeCards?.map((card) => {
           const isLiked = checkIsLiked(card.id);

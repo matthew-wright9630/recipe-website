@@ -47,7 +47,7 @@ function SignupPopup({
                 <input
                   onChange={handleChange}
                   type="text"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   name="userName"
                   id="signupUsername"
                   placeholder="username"
@@ -66,7 +66,7 @@ function SignupPopup({
                 <input
                   onChange={handleChange}
                   type="email"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   name="email"
                   id="signupEmail"
                   placeholder="email"
@@ -85,7 +85,7 @@ function SignupPopup({
                 <input
                   onChange={handleChange}
                   type="password"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   id="signupPassword"
                   name="password"
                   placeholder="password"
@@ -105,7 +105,7 @@ function SignupPopup({
                 <input
                   onChange={handleChange}
                   type="password"
-                  className="h-[50px]"
+                  className="h-[50px] px-1"
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="confirm password"

@@ -11,7 +11,7 @@ import { createContext } from "react";
 import { User } from "../../types/user";
 import Profile from "../Profile/Profile";
 import AddToGroupPopup from "../AddToGroupPopup/AddToGroupPopup";
-// import SignupPopup from "../SignupPopup/SignupPopup";
+import { createUser, getUsers, loginUser } from "../../utils/api";
 
 function App() {
   const CurrentUserContext = createContext({});
@@ -172,7 +172,7 @@ function App() {
     setActivePopup("");
   }
 
-  const handleLogin = ({
+  const handleLogin = async ({
     email,
     password,
     resetForm,
@@ -181,25 +181,24 @@ function App() {
     password: string;
     resetForm: () => void;
   }) => {
-    if (!email || !password) {
-      return;
-    }
-
     //This will send a request to the middleware, and on a success it will allow the user to login.
     //For dev purposes, I have defined a specific user to login as.
 
-    if (email === "test@test.com") {
-      setCurrentUser({
-        userId: "User",
-        userName: "I HAVE A REAAAAAAALLY LONG NAME. THIS IS A TEST",
-        likedRecipes: ["5"],
-        recipeGroups: ["Liked Recipes"],
-      });
-      setIsLoggedIn(true);
+    if (!email || !password) {
+      setError("Email and password must be entered");
+      return;
     }
 
-    resetForm();
-    handleClosePopup();
+    try {
+      const user = await loginUser({ email: email, password: password });
+      console.log(user, email, password);
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+      resetForm();
+      handleClosePopup();
+    } catch (err: any) {
+      setError(err.message || "Login failed");
+    }
   };
 
   const handleLogout = () => {
@@ -228,6 +227,8 @@ function App() {
       return;
     }
 
+    createUser({ name: userName, email: email, password: password });
+
     console.log(email, password);
     resetForm();
     handleClosePopup();
@@ -237,6 +238,19 @@ function App() {
   function handleCardLike(recipe: Recipe) {
     //This function will tell the database to add the recipe ID to the user's liked cards list.
     //The program should handle displaying the liked card list.
+  }
+
+  function test() {
+    loadUsers();
+  }
+
+  async function loadUsers() {
+    try {
+      const users = await getUsers(); // wait for the Promise to resolve
+      console.log(users);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
