@@ -29,7 +29,7 @@ function Main({
 
   return (
     <div className="">
-      <div className="grid grid-cols-3 gap-5 place-cotent-stretch">
+      <div className="grid-items">
         {recipeCards?.map((card) => {
           const isLiked = checkIsLiked(card.id);
           return (

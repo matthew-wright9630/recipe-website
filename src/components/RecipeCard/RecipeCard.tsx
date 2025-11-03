@@ -1,6 +1,7 @@
 import { Recipe } from "../../types/recipe";
 import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 import { HeartIcon } from "@heroicons/react/24/solid";
+import { ShareIcon } from "@heroicons/react/24/solid";
 
 type RecipeCardProps = Recipe & {
   handlePopupClick: (recipe: Recipe) => void;
@@ -61,28 +62,28 @@ function RecipeCard({
               className={`absolute bottom-0 right-0  w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
             />
           </button>
-          <button
-            onClick={() => {
-              handleAddToGroupPopupClick({
-                name,
-                shortDescription,
-                image,
-                directions,
-                ingredients,
-                recipeHeader,
-                notes,
-                author,
-                id,
-              });
-            }}
-            className="button absolute bottom-0 left-0 w-[60px] text-sm"
-          >
-            Share Recipe
-          </button>
         </>
       ) : (
         ""
       )}
+      <button
+        onClick={() => {
+          handleAddToGroupPopupClick({
+            name,
+            shortDescription,
+            image,
+            directions,
+            ingredients,
+            recipeHeader,
+            notes,
+            author,
+            id,
+          });
+        }}
+        className="button absolute bottom-0 left-0 w-[30px] h-[30px] px-0 text-sm"
+      >
+        <ShareIcon className="w-full h-full" />
+      </button>
     </div>
   );
 }

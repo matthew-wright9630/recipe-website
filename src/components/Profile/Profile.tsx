@@ -21,18 +21,18 @@ function Profile({
     if (!user) {
       return false;
     }
-    if (user.likedRecipes.includes(recipeId)) {
-      return true;
-    } else {
-      return false;
-    }
+    // if (user.likedRecipes.includes(recipeId)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   return (
     <div>
       {/* For each group that is shared with a user, a card is shown. If the user clicks on the group, it will enter that group. 
       It will look similar to the homepage, but only shows the recipes saved to that group. */}
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid-items">
         {recipeCards?.map((card) => {
           const isLiked = checkIsLiked(card.id);
           {

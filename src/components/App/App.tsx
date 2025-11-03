@@ -386,6 +386,7 @@ function App() {
           isOpen={isAddToGroupPopupOpen}
           recipeInformation={recipePopupInformation}
           user={currentUser}
+          isLoggedIn={isLoggedIn}
         />
       </div>
     </CurrentUserContext.Provider>

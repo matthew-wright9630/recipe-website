@@ -13,6 +13,10 @@
   .form-button {
     @apply w-[40%] rounded-md bg-black text-white transition-all duration-500 hover:bg-gray-600 cursor-pointer
   }
+
+  .grid-items {
+    @apply grid grid-cols-3 gap-5 place-content-stretch
+  }
 }
 /* 
 :root {
