@@ -3,9 +3,9 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function SignupPopup({
   isOpen,
+  error,
   handleClosePopup,
   handleLoginPopupClick,
-  error,
   handleSignup,
 }: {
   isOpen: boolean;
@@ -40,7 +40,7 @@ function SignupPopup({
         onClose={handleClosePopup}
         isOpen={isOpen}
         children={
-          <form className="flex flex-col gap-5 mx-5 w-[50%] mx-auto">
+          <form className="flex flex-col gap-5 mx-5 w-[50%] mx-auto overflow-y-auto overflow-x-hidden">
             <div className="flex flex-col">
               <label className="form-label">
                 User Name *

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import { Recipe } from "../../types/recipe";
@@ -16,6 +16,7 @@ import { createUser, getUsers, loginUser } from "../../utils/api";
 function App() {
   const CurrentUserContext = createContext({});
   const [activePopup, setActivePopup] = useState<string | null>(null);
+  const [cachedPopup, setCachedPopup] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<User>();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
@@ -126,6 +127,9 @@ function App() {
     },
   ]);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollPos, setScrollPos] = useState(0);
+
   function addRecipe() {
     console.log(...recipeCards);
     setRecipeCards([
@@ -159,6 +163,9 @@ function App() {
   }
 
   function handleAddToGroupPopupClick(recipe: Recipe) {
+    if (activePopup !== "") {
+      setCachedPopup(activePopup);
+    }
     setActivePopup("add-to-group-popup");
     setRecipePopupInformation(recipe);
   }
@@ -169,8 +176,28 @@ function App() {
   const isAddToGroupPopupOpen = activePopup === "add-to-group-popup";
 
   function handleClosePopup() {
-    setActivePopup("");
+    if (cachedPopup !== "") {
+      setActivePopup(cachedPopup);
+      handleCloseOverlayPopup();
+      setCachedPopup("");
+    } else {
+      setActivePopup("");
+    }
   }
+
+  const handleOpenOverlayPopup = () => {
+    if (scrollRef.current) {
+      setScrollPos(scrollRef.current.scrollTop);
+    }
+  };
+
+  const handleCloseOverlayPopup = () => {
+    requestAnimationFrame(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollPos;
+      }
+    });
+  };
 
   const handleLogin = async ({
     email,
@@ -353,23 +380,25 @@ function App() {
           />
         </Routes>
         {/*Popups: */}
-        {recipePopupInformation && (
-          <RecipePopup
-            name={recipePopupInformation?.name}
-            shortDescription={recipePopupInformation?.shortDescription}
-            image={recipePopupInformation?.image}
-            directions={recipePopupInformation?.directions}
-            ingredients={recipePopupInformation?.ingredients}
-            recipeHeader={recipePopupInformation?.recipeHeader}
-            notes={recipePopupInformation?.notes}
-            author={recipePopupInformation?.author}
-            id={recipePopupInformation?.id}
-            isOpen={isRecipePopupOpen}
-            handleClosePopup={handleClosePopup}
-            isLoggedIn={isLoggedIn}
-            handleAddToGroupPopupClick={handleAddToGroupPopupClick}
-          />
-        )}
+        {/* {recipePopupInformation && ( */}
+        <RecipePopup
+          name={recipePopupInformation?.name}
+          shortDescription={recipePopupInformation?.shortDescription}
+          image={recipePopupInformation?.image}
+          directions={recipePopupInformation?.directions}
+          ingredients={recipePopupInformation?.ingredients}
+          recipeHeader={recipePopupInformation?.recipeHeader}
+          notes={recipePopupInformation?.notes}
+          author={recipePopupInformation?.author}
+          id={recipePopupInformation?.id}
+          isOpen={isRecipePopupOpen}
+          handleClosePopup={handleClosePopup}
+          isLoggedIn={isLoggedIn}
+          handleAddToGroupPopupClick={handleAddToGroupPopupClick}
+          handleOpenOverlayPopup={handleOpenOverlayPopup}
+          scrollRef={scrollRef}
+        />
+        {/* )} */}
         <LoginPopup
           isOpen={isLoginPopupOpen}
           handleClosePopup={handleClosePopup}

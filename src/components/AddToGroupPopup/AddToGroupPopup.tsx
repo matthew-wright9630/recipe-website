@@ -31,7 +31,7 @@ function AddToGroupPopup({
         onClose={handleClosePopup}
         isOpen={isOpen}
         children={
-          <div className={`${isLoggedIn ? "" : "h-[85%]"}`}>
+          <div className={`${isLoggedIn ? "" : "h-[85%]"} overflow-y-auto overflow-x-hidden`}>
             <form className={`flex flex-col gap-5 mx-5 w-[50%] mx-auto ${isLoggedIn ? "" : "h-full"}`}>
               <div className={`flex flex-col gap-2 ${isLoggedIn ? "" : "my-auto"}`}>
                 <label className="form-label">

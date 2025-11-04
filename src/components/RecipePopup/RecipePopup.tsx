@@ -4,13 +4,16 @@ import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { ShareIcon } from "@heroicons/react/24/solid";
+import { useEffect, useRef, useState } from "react";
 
 type RecipePopupProps = Recipe & {
   isOpen: boolean;
   isLoggedIn: boolean;
   isLiked?: boolean;
+  scrollRef: React.RefObject<HTMLDivElement>;
   handleClosePopup: () => void;
   handleAddToGroupPopupClick: (recipe: Recipe) => void;
+  handleOpenOverlayPopup: () => void;
 };
 
 function RecipePopup({
@@ -26,12 +29,35 @@ function RecipePopup({
   isLoggedIn,
   id,
   isLiked,
+  scrollRef,
   handleAddToGroupPopupClick,
   handleClosePopup,
+  handleOpenOverlayPopup,
 }: RecipePopupProps) {
-  // if (!isOpen) {
-  //   return null;
-  // }
+  if (!name) {
+    return;
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // useEffect(() => {
+  //   const el = scrollRef.current;
+  //   if (!el) return;
+  //   const log = () => console.log("scrollTop:", el.scrollTop);
+  //   el.addEventListener("scroll", log);
+  //   return () => el.removeEventListener("scroll", log);
+  // }, [scrollRef]);
+
   return (
     <div className="">
       <Popup
@@ -39,7 +65,7 @@ function RecipePopup({
         onClose={handleClosePopup}
         isOpen={isOpen}
         children={
-          <div className="flex flex-col gap-5 h-[90%] mx-5">
+          <div ref={scrollRef} className="flex flex-col gap-5 h-[90%] mx-5 overflow-y-auto">
             <button className="absolute top-[50px] right-[5px] hover:opacity-70 transition-all">
               <ArrowTopRightOnSquareIcon className="w-7 h-7" />
             </button>
@@ -92,6 +118,7 @@ function RecipePopup({
             <div className={`flex ${isLoggedIn ? "justify-around" : ""}`}>
               <button
                 onClick={() => {
+                  handleOpenOverlayPopup();
                   handleAddToGroupPopupClick({
                     name,
                     shortDescription,
@@ -109,17 +136,17 @@ function RecipePopup({
                 <ShareIcon className="w-full h-full p-1" />
                 <div className="h-[30px]"></div>
               </button>
-                {isLoggedIn ? (
-                  <>
-                    <button>
-                      <HeartIcon
-                        className={` w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
-                      />
-                    </button>
-                  </>
-                ) : (
-                  ""
-                )}
+              {isLoggedIn ? (
+                <>
+                  <button>
+                    <HeartIcon
+                      className={` w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
+                    />
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         }
