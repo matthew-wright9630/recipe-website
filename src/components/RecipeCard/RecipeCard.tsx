@@ -82,7 +82,7 @@ function RecipeCard({
         }}
         className="button absolute bottom-0 left-0 w-[30px] h-[30px] px-0 text-sm"
       >
-        <ShareIcon className="w-full h-full" />
+        <ShareIcon className="w-full h-full p-1" />
       </button>
     </div>
   );

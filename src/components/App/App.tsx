@@ -366,6 +366,8 @@ function App() {
             id={recipePopupInformation?.id}
             isOpen={isRecipePopupOpen}
             handleClosePopup={handleClosePopup}
+            isLoggedIn={isLoggedIn}
+            handleAddToGroupPopupClick={handleAddToGroupPopupClick}
           />
         )}
         <LoginPopup

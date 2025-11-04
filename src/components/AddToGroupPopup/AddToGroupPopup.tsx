@@ -41,7 +41,7 @@ function AddToGroupPopup({
                     type="email"
                     className="h-[50px] px-1"
                     name="email"
-                    id="loginEmail"
+                    id="shareEmail"
                     placeholder="email"
                     value={values.email || ""}
                     required={true}

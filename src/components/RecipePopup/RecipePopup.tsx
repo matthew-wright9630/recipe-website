@@ -2,10 +2,15 @@ import Popup from "../Popup/Popup";
 import { Recipe } from "../../types/recipe";
 import testFoodImage from "../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/24/solid";
+import { ShareIcon } from "@heroicons/react/24/solid";
 
 type RecipePopupProps = Recipe & {
   isOpen: boolean;
+  isLoggedIn: boolean;
+  isLiked?: boolean;
   handleClosePopup: () => void;
+  handleAddToGroupPopupClick: (recipe: Recipe) => void;
 };
 
 function RecipePopup({
@@ -18,6 +23,10 @@ function RecipePopup({
   author,
   notes,
   isOpen,
+  isLoggedIn,
+  id,
+  isLiked,
+  handleAddToGroupPopupClick,
   handleClosePopup,
 }: RecipePopupProps) {
   // if (!isOpen) {
@@ -80,6 +89,38 @@ function RecipePopup({
               ""
             )}
             <div className="h-10 self-center">Authored by: {author}</div>
+            <div className={`flex ${isLoggedIn ? "justify-around" : ""}`}>
+              <button
+                onClick={() => {
+                  handleAddToGroupPopupClick({
+                    name,
+                    shortDescription,
+                    image,
+                    directions,
+                    ingredients,
+                    recipeHeader,
+                    notes,
+                    author,
+                    id,
+                  });
+                }}
+                className="button w-[30px] h-[30px] px-0 text-sm"
+              >
+                <ShareIcon className="w-full h-full p-1" />
+                <div className="h-[30px]"></div>
+              </button>
+                {isLoggedIn ? (
+                  <>
+                    <button>
+                      <HeartIcon
+                        className={` w-[30px] h-[30px] hover:opacity-60 transition-opacity ${isLiked ? "fill-red-500" : "fill-transparent stroke-white"}`}
+                      />
+                    </button>
+                  </>
+                ) : (
+                  ""
+                )}
+            </div>
           </div>
         }
       ></Popup>
