@@ -22,7 +22,7 @@ type RecipeHeader = {
 
 export type Recipe = {
   name: string;
-  shortDescription: string;
+  description: string;
   image: string;
   directions: Array<string>;
   ingredients: Array<Ingredient>;

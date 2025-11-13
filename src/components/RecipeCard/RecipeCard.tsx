@@ -12,7 +12,7 @@ type RecipeCardProps = Recipe & {
 
 function RecipeCard({
   name,
-  shortDescription,
+  description,
   image,
   directions,
   ingredients,
@@ -32,7 +32,7 @@ function RecipeCard({
         onClick={() => {
           handlePopupClick({
             name,
-            shortDescription,
+            description,
             image,
             directions,
             ingredients,
@@ -44,7 +44,7 @@ function RecipeCard({
         }}
       >
         <h3 className="text-3xl text-center">{name}</h3>
-        <p className="text-lg text-center">{shortDescription}</p>
+        <p className="text-lg text-center line-clamp-3">{description}</p>
         {image ? (
           <img src={image} alt={name} />
         ) : (
@@ -70,7 +70,7 @@ function RecipeCard({
         onClick={() => {
           handleAddToGroupPopupClick({
             name,
-            shortDescription,
+            description,
             image,
             directions,
             ingredients,

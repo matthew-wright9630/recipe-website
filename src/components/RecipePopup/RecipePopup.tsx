@@ -18,7 +18,7 @@ type RecipePopupProps = Recipe & {
 
 function RecipePopup({
   name,
-  shortDescription,
+  description,
   image,
   directions,
   ingredients,
@@ -69,7 +69,7 @@ function RecipePopup({
             <button className="absolute top-[50px] right-[5px] hover:opacity-70 transition-all">
               <ArrowTopRightOnSquareIcon className="w-7 h-7" />
             </button>
-            <p className="text-xl self-center">{shortDescription}</p>
+            <p className="text-xl self-center">{description}</p>
             {image ? (
               <img src={image} alt={name} />
             ) : (
@@ -121,7 +121,7 @@ function RecipePopup({
                   handleOpenOverlayPopup();
                   handleAddToGroupPopupClick({
                     name,
-                    shortDescription,
+                    description,
                     image,
                     directions,
                     ingredients,
@@ -155,7 +155,7 @@ function RecipePopup({
   );
   {
     /* <h3 className="text-3xl text-center">{name}</h3>
-      <p className="text-xl text-center">{shortDescription}</p>
+      <p className="text-xl text-center">{description}</p>
       {image ? <img src={image} alt={name} /> : ""} */
   }
 }

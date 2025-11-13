@@ -27,7 +27,7 @@ function App() {
   const [recipeCards, setRecipeCards] = useState<Recipe[]>([
     {
       name: "Buckeyes",
-      shortDescription: "Peanut butter and chocolate dessert",
+      description: "Peanut butter and chocolate dessert",
       image: "",
       directions: [
         "Thoroughly mix all the ingredients except for the chocolate.",
@@ -67,7 +67,7 @@ function App() {
 
     {
       name: "Second Test",
-      shortDescription: "This is the second card.",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
       image: "",
       directions: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
@@ -81,7 +81,7 @@ function App() {
 
     {
       name: "test",
-      shortDescription: "This is a shortDescription used for testing purposes.",
+      description: "This is a description used for testing purposes.",
       image: "",
       directions: [""],
       ingredients: [],
@@ -92,7 +92,7 @@ function App() {
     },
     {
       name: "test",
-      shortDescription: "New Test",
+      description: "New Test",
       image: "",
       directions: [""],
       ingredients: [],
@@ -103,7 +103,7 @@ function App() {
     },
     {
       name: "Second Test",
-      shortDescription: "This is the second card.",
+      description: "This is the second card.",
       image: "",
       directions: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
@@ -116,7 +116,7 @@ function App() {
     },
     {
       name: "test",
-      shortDescription: "This is a shortDescription used for testing purposes.",
+      description: "This is a description used for testing purposes.",
       image: "",
       directions: [""],
       ingredients: [],
@@ -136,8 +136,8 @@ function App() {
       ...recipeCards,
       {
         name: "test",
-        shortDescription:
-          "This is a shortDescription used for testing purposes.",
+        description:
+          "This is a description used for testing purposes.",
         image: "",
         directions: [""],
         ingredients: [],
@@ -383,7 +383,7 @@ function App() {
         {/* {recipePopupInformation && ( */}
         <RecipePopup
           name={recipePopupInformation?.name}
-          shortDescription={recipePopupInformation?.shortDescription}
+          description={recipePopupInformation?.description}
           image={recipePopupInformation?.image}
           directions={recipePopupInformation?.directions}
           ingredients={recipePopupInformation?.ingredients}

@@ -39,7 +39,7 @@ function Profile({
             return isLiked ? (
               <RecipeCard
                 name={card.name}
-                shortDescription={card.shortDescription}
+                description={card.description}
                 image={card.image}
                 directions={card.directions}
                 ingredients={card.ingredients}
